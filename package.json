@@ -1,6 +1,6 @@
 {
   "name": "gladys-livebox",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Control livebox decoder on Gladys",
   "main": "index.js",
   "scripts": {
@@ -13,16 +13,13 @@
   "keywords": [
     "Gladys",
     "television",
-    "livebox"
+    "livebox",
+    "Decoder"
   ],
   "author": "Philippe Lenzi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/piznel/gladys-livebox/issues"
   },
-  "homepage": "https://github.com/piznel/gladys-livebox#readme",
-  "dependencies": {
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2"
-  }
+  "homepage": "https://github.com/piznel/gladys-livebox#readme"
 }
