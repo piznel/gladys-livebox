@@ -7,4 +7,4 @@
 * Update LIVEBOX_TV on Gladys parameters with value livebox TV ip ( You can find it by connecting to the management interface of your Livebox )
 * Click on livebox configuration button to install The Livebox decoder
 * Attach the Livebox decoder to a room
-* Add the Television Box
+* Add the Television Box, enjoy !
