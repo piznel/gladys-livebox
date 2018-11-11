@@ -23,7 +23,7 @@
 		}
 		
 		function activate(){
-			console.log(vm.box.param)
+			console.log('le controlleur est vivant ! :', vm.box.param)
 		}
 
 		function updateBoxParams(hello_world){
