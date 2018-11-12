@@ -22,7 +22,5 @@
     "url": "https://github.com/piznel/gladys-livebox/issues"
   },
   "homepage": "https://github.com/piznel/gladys-livebox#readme",
-  "dependencies": {
-    "json-fs-store": "^1.0.1"
-  }
+  "dependencies": {}
 }
