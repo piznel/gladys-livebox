@@ -1,0 +1,61 @@
+<!-- box-->
+<div class="box box-primary" data-ng-controller="liveboxCtrl as vm" ng-init="vm.init(<%= boxId %>);">
+  <div class="box-header with-border">
+    <span><i class="fa fa-television"></i></span>
+    <h3 ng-show="vm.displayAskDeviceForm" class="box-title">Livebox TV</h3>
+    <span ng-show="vm.deviceId" class="ng-cloak">
+      <h3 class="box-title">{{vm.currentDeviceName}}</h3>
+    </span>
+    <div ng-show="vm.deviceId" class="pull-right box-tools">
+      <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bars"></i></button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li ng-repeat="device in vm.devices" class="ng-cloak"><a ng-click="vm.selectDevice(device);">{{device.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="box-body">
+    vm.currentPowerState : {{vm.currentPowerState}}
+    <div ng-show="vm.displayAskDeviceForm" class="ng-cloak">
+      <p>
+        <%= __('box-television-television-select') %>
+      </p>
+      <div class="row">
+        <div class="col-xs-offset-2 col-xs-6">
+          <select ng-model="vm.selectedDevice" class="form-control" class="ng-cloak">
+            <option ng-repeat="device in vm.devices" value="{{device}}">{{device.name}}</option>
+          </select>
+        </div>
+        <div class="col-xs-2"> <button class="btn btn-success btn-flat" ng-click="vm.selectDevice(vm.selectedDevice);">
+            <%= __('box-television-television-validate') %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="vm.deviceId" class="box-footer ng-cloak">
+    <div class="row no-gutter">
+      <div class="col-xs-2 text-center">
+        <!--on/off-->
+        <button type="button" ng-click="vm.switchState()" class=" btn btn-margin btn-circle" ng-class="{'btn-danger' : (vm.currentPowerState == '0'), 'btn-success' : (vm.currentPowerState == '1')}">
+          <i class="fa fa-power-off"></i></button>
+      </div>
+      <div class="col-xs-5 text-center">
+        <!--Son-->
+        <div class="btn-group">
+          <button type="button" ng-click="vm.volumeDown()" class="btn btn-default btn-left-rounded"><i class="glyphicon glyphicon-volume-down"></i></button>
+          <button type="button" ng-click="vm.setMuted()" class="btn btn-default"><i class="glyphicon glyphicon-volume-off"></i></button>
+          <button type="button" ng-click="vm.volumeUp()" class="btn btn-default btn-right-rounded"><i class="glyphicon glyphicon-volume-up"></i></button>
+        </div>
+
+      </div>
+      <div class="col-xs-5 text-center">
+        <!--Programme-->
+        <div class="btn-group">
+          <button type="button" ng-click="vm.programMinus()" class="btn btn-default btn-left-rounded">-</button>
+          <button type="button" ng-click="vm.programVod()" class="btn btn-default"><i ng-class="vm.availableMethods.programVod ? 'fa fa-tv enabled':'fa fa-tv disabled'"></i></button>
+          <button type="button" ng-click="vm.programPlus()" class="btn btn-default btn-right-rounded">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
