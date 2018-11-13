@@ -15,7 +15,15 @@
     </div>
   </div>
   <div class="box-body">
-    vm.currentPowerState : {{vm.currentPowerState}}
+    <div ng-show="vm.deviceId" class="container-fluid ng-cloak" style="height:250px; overflow:auto">
+      <div class="row-fluid justify-content-center align-items-center">
+        <div class="col-xs-4 col-sm-3 col-md-2 text-center" ng-repeat="channel in vm.channels">
+          <img class="btn btn-default" ng-src="{{channel.url}}" alt="{{channel.name}}" ng-click="vm.pressKey(channel.epg)"
+            style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
+        </div>
+      </div>
+    </div>
+
     <div ng-show="vm.displayAskDeviceForm" class="ng-cloak">
       <p>
         <%= __('box-television-television-select') %>

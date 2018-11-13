@@ -5,13 +5,13 @@
     .module('gladys')
     .controller('liveboxCtrl', liveboxCtrl);
 
-  liveboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService'];
+  liveboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$q'];
 
-  function liveboxCtrl(televisionService, deviceService, boxService) {
+  function liveboxCtrl(televisionService, deviceService, boxService, $http, $q) {
     /* jshint validthis: true */
     var vm = this;
     vm.devices = [];
-    vm.devicetypes = [];
+    vm.devicetypes = new Array;
     vm.deviceId = null;
     vm.displayAskDeviceForm = false;
     vm.currentDeviceName = '';
@@ -30,8 +30,6 @@
     vm.programMinus = programMinus;
 
     function selectDevice(device) {
-      console.log('typeof device', typeof(device))
-      console.log('device', device)
       if (typeof(device) === 'string') {
         device = JSON.parse(device);
       }
@@ -47,52 +45,61 @@
         .then(function(data) {
           vm.box = data.data;
           getDevices();
-        });
-      waitForNewValue();
+		})
+		.then(function() {
+			if (vm.box.params && vm.box.params.deviceId) {
+				setBoxInformation(vm.box.params.deviceId, vm.box.params.name);
+			} else {
+				vm.displayAskDeviceForm = true;
+			}			
+		})
+		.then(function() {
+			waitForNewValue();
+		});
     }
 
     function getDevices() {
-      deviceService.get()
+      	deviceService.get()
         .then(function(data) {
-          var tempDevices = data.data;
-          tempDevices.forEach(function(device) {
-            if (device.service === 'livebox') {
-              vm.devices.push({ id: device.id, name: device.name });
-              vm.devicetypes[device.id] = new Array();
-              deviceService.getDeviceTypesDevice(device.id)
-                .then(function(data) {
-                  data.data.forEach(function(deviceType) {
-                    vm.devicetypes[device.id].push(deviceType);
-                  })
-                });
-            }
-          })
-        })
-        .then(function() {
-          if (vm.box.params && vm.box.params.deviceId) {
-            setBoxInformation(vm.box.params.deviceId, vm.box.params.name);
-          } else {
-            vm.displayAskDeviceForm = true;
-          }
-        });
+          	var tempDevices = data.data;
+		  	tempDevices = tempDevices.filter(function(device) {
+				return device.service === 'livebox';
+			});
+			console.log('tempDevices', tempDevices);
+			tempDevices = tempDevices.map(function(device) { 
+				vm.devices.push({ id: device.id, name: device.name });
+				deviceService.getDeviceTypesDevice(device.id)
+				.then(function(data) {
+					var tempDeviceType  = data.data.map(function(deviceType) {
+						vm.devicetypes.push({ id: deviceType.id, identifier: deviceType.identifier, lastValue: deviceType.lastValue, deviceId: device.id});
+					});
+				})
+			})
+		})	
     }
 
     function setBoxInformation(deviceId, deviceName) {
-      vm.displayAskDeviceForm = false;
-      vm.deviceId = deviceId;
-      vm.currentDeviceName = deviceName;
-      vm.currentPowerState = null;
-      getData(deviceId);
+		vm.displayAskDeviceForm = false;
+		vm.deviceId = deviceId;
+		vm.currentDeviceName = deviceName;
+		vm.currentPowerState = null;
+		readJson();
+		getData(deviceId);
     }
 
     function getData(deviceId) {
-      vm.devicetypes[deviceId].forEach(function(devicetype) {
-        console.log('devicetype', devicetype)
-        if (devicetype.identifier == 'Power') {
-          vm.currentPowerState = devicetype.lastValue;
-          vm.devicePowerId = devicetype.id;
-        }
-      });
+		console.log('deviceId',deviceId)
+		console.log('vm.devicetypes',vm.devicetypes)
+		console.log('vm.devicetypes.length', (vm.devicetypes).length)
+		console.log('isArray', Array.isArray(vm.devicetypes))
+
+      var deviceTypeFiltering = vm.devicetypes.filter(function(devicetype) {
+		  return (devicetype.identifier === 'Power' && devicetype.deviceId === deviceId)
+	  });
+        console.log('deviceTypeFiltering', deviceTypeFiltering)
+          vm.currentPowerState = deviceTypeFiltering[0].lastValue;
+          vm.devicePowerId = deviceTypeFiltering[0].id;
+
     }
 
     function switchState() {
@@ -147,7 +154,8 @@
     }
 
     function pressKey(key) {
-      return televisionService.pressKey({ device: vm.deviceId, key: key })
+		console.log('key :', key)
+      return televisionService.pressKey({ device: vm.deviceId, key: 'epg:'+key })
         .then(function() {
 
         });
@@ -160,6 +168,23 @@
           vm.currentPowerState = deviceState.value;
         }
       });
-    }
+	}
+	
+	function readJson() {
+		var request = {
+			method: 'get',
+			url: './hooks/livebox/data/channels.json',
+			dataType: 'json',
+			contentType: "application/json"
+		};
+		vm.channels = new Array;
+		$http(request)
+			.success(function (data) {
+				vm.channels = data.orange;
+			})
+			.error(function () {
+
+		});
+	}
   }
 })();
