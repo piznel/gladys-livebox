@@ -4,7 +4,7 @@
     <span><i class="fa fa-television"></i></span>
     <h3 ng-show="vm.displayAskDeviceForm" class="box-title">Livebox TV</h3>
     <span ng-show="vm.deviceId" class="ng-cloak">
-      <h3 class="box-title">{{vm.currentDeviceName}}</h3>
+      <h3 class="box-title">{{vm.currentDeviceName}}<span ng-show="vm.currentChannel.length > 0"> - {{vm.currentChannel}}</span></h3>
     </span>
     <div ng-show="vm.deviceId" class="pull-right box-tools">
       <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
@@ -18,7 +18,8 @@
     <div ng-show="vm.deviceId" class="container-fluid ng-cloak" style="height:250px; overflow:auto">
       <div class="row-fluid justify-content-center align-items-center">
         <div class="col-xs-4 col-sm-3 col-md-2 text-center" ng-repeat="channel in vm.channels">
-          <img class="btn btn-default" ng-src="{{channel.url}}" alt="{{channel.name}}" ng-click="vm.pressKey(channel.epg)" style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
+          <img class="btn btn-default" ng-src="{{channel.url}}" alt="{{channel.name}}" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name;"
+            style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
         </div>
       </div>
     </div>
