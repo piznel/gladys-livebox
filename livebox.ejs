@@ -4,9 +4,12 @@
     <span><i class="fa fa-television"></i></span>
     <h3 ng-show="vm.displayAskDeviceForm" class="box-title">Livebox TV</h3>
     <span ng-show="vm.deviceId" class="ng-cloak">
-      <h3 class="box-title">{{vm.currentDeviceName}}<span ng-show="vm.currentChannel.length > 0"> - {{vm.currentChannel}}</span></h3>
+      <h3 class="box-title">{{vm.currentDeviceName}}<span ng-show="vm.currentChannel.length > 0"> ( {{vm.currentChannel}} )</span></h3>
+      
+      
     </span>
     <div ng-show="vm.deviceId" class="pull-right box-tools">
+        <img ng-src="{{vm.currentUrl}}" ng-show="vm.currentUrl.length > 0" style="width: 45px;height:25px">
       <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-bars"></i></button>
       <ul class="dropdown-menu pull-right" role="menu">
@@ -18,8 +21,9 @@
     <div ng-show="vm.deviceId" class="container-fluid ng-cloak" style="height:250px; overflow:auto">
       <div class="row-fluid justify-content-center align-items-center">
         <div class="col-xs-4 col-sm-3 col-md-2 text-center" ng-repeat="channel in vm.channels">
-          <img class="btn btn-default" ng-src="{{channel.url}}" alt="{{channel.name}}" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name;"
-            style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
+          <img class="btn btn-default" ng-src="{{channel.url}}" alt="{{channel.name}}" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name; vm.currentUrl = channel.url"
+            style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px"
+            >
         </div>
       </div>
     </div>
@@ -44,7 +48,7 @@
     <div class="row no-gutter">
       <div class="col-xs-2 text-center">
         <!--on/off-->
-        <button type="button" ng-click="vm.switchState()" class=" btn btn-margin btn-circle" ng-class="{'btn-danger' : (vm.currentPowerState == '0'), 'btn-success' : (vm.currentPowerState == '1')}">
+        <button type="button" ng-click="vm.switchState()" ng-class="{'btn-danger btn btn-margin btn-circle' : (vm.currentPowerState == '0'), 'btn-success btn btn-margin btn-circle' : (vm.currentPowerState == '1')}">
           <i class="fa fa-power-off"></i></button>
       </div>
       <div class="col-xs-5 text-center">

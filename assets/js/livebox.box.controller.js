@@ -5,18 +5,19 @@
     .module('gladys')
     .controller('liveboxCtrl', liveboxCtrl);
 
-  liveboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http'];
+  liveboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$scope'];
 
-  function liveboxCtrl(televisionService, deviceService, boxService, $http) {
+  function liveboxCtrl(televisionService, deviceService, boxService, $http, $scope) {
     var vm = this;
+
     vm.devices = [];
     vm.devicetypes = [];
     vm.deviceId = null;
     vm.displayAskDeviceForm = false;
     vm.currentDeviceName = '';
     vm.currentChannel = '';
-
-    vm.selectDevice = selectDevice;
+    vm.currentUrl = '';
+    vm.ipSelectedDevice = '';
 
     vm.init = init;
     vm.switchState = switchState;
@@ -27,6 +28,7 @@
     vm.programVod = programVod;
     vm.programPlus = programPlus;
     vm.programMinus = programMinus;
+    vm.selectDevice = selectDevice;
 
     function init(id) {
       vm.boxId = id;
@@ -34,12 +36,12 @@
       .then(function(data) {
         vm.box = data.data;
         getDevices();
-        waitForNewValue();
       })
+       waitForNewValue();
+       return
     }
 
     function getDevices() {
-
       return deviceService.get(undefined,undefined,'livebox')
         .then(function(data) {
         return getDevicesLivebox(data.data)
@@ -49,17 +51,17 @@
       })
       .then(function(result){
           if (vm.box.params && vm.box.params.deviceId) {
-          setBoxInformation(vm.box.params.deviceId, vm.box.params.name);
+          setBoxInformation(vm.box.params.deviceId, vm.box.params.name, vm.box.params.ip);
         } else {
           vm.displayAskDeviceForm = true;
-        };          
+        };     
       })
     }
 
     function getDevicesLivebox(devices) {
       return new Promise(function(resolve, reject) {
         devices.forEach(function(device) {
-            vm.devices.push({ id: device.id, name: device.name });
+            vm.devices.push({ id: device.id, name: device.name, ip: device.identifier });
         })
         return resolve(vm.devices);
       })
@@ -67,24 +69,25 @@
 
     function getDeviceTypesLivebox(devices) {
       return new Promise(function(resolve, reject) {
-        devices.map(function(device) {
-          deviceService.getDeviceTypesDevice(device.id)
+        return devices.map(function(device) {
+          return deviceService.getDeviceTypesDevice(device.id)
             .then(function(data) {
-              data.data.forEach(deviceType => {
-                vm.devicetypes.push({ id: deviceType.id, identifier: deviceType.identifier, lastValue: deviceType.lastValue, deviceId: device.id });  
+              data.data.map(deviceType => {
+              vm.devicetypes.push({ id: deviceType.id, identifier: deviceType.identifier, lastValue: deviceType.lastValue, deviceId: device.id });
               });
+              resolve(vm.devicetypes)
             })
         });
         return resolve(vm.devicetypes);
       })
     }
 
-
-    function setBoxInformation(deviceId, deviceName) {
+    function setBoxInformation(deviceId, deviceName, ipDevice) {
       vm.displayAskDeviceForm = false;
       vm.deviceId = deviceId;
       vm.currentDeviceName = deviceName;
       vm.currentPowerState = null;
+      vm.ipSelectedDevice = ipDevice;
       readJson();
       getData(vm.deviceId);
     }
@@ -102,9 +105,9 @@
       if (typeof(device) === 'string') {
         device = JSON.parse(device);
       }
-      boxService.update(vm.boxId, { params: { deviceId: device.id, name: device.name } });
+      boxService.update(vm.boxId, { params: { deviceId: device.id, name: device.name, ip:device.ip } });
       // update box
-      setBoxInformation(device.id, device.name);
+      setBoxInformation(device.id, device.name, device.ip);
     }
 
 
@@ -171,7 +174,22 @@
       io.socket.on('newDeviceState', function(deviceState) {
         if (deviceState.devicetype === vm.devicePowerId) {
           vm.currentPowerState = deviceState.value;
+          $scope.$apply();
         }
+      });
+      io.socket.on('livebox-channel', function(newChannel) {
+          if(vm.ipSelectedDevice == newChannel.ip) {
+            var tmpChannel = vm.channels.filter(function(channel) {
+              return (channel.epg === newChannel.channel)
+            });
+            if(tmpChannel.length === 1) {
+            vm.currentChannel = tmpChannel[0].name;
+            vm.currentUrl = tmpChannel[0].url;
+            $scope.$apply()
+            }
+          }
+         
+         
       });
 	  }
 	
