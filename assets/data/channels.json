@@ -3,337 +3,337 @@
 		"channel": 1,
 		"name": "TF1",
 		"epg": 192,
-		"url": "assets/livebox/img/1-192.png",
+		"url": "hooks/livebox/img/1-192.png",
 		"type": "TNT"
 	}, {
 		"channel": 2,
 		"name": "France 2",
 		"epg": 4,
-		"url": "assets/livebox/img/2-4.png",
+		"url": "hooks/livebox/img/2-4.png",
 		"type": "TNT"
 	}, {
 		"channel": 3,
 		"name": "France 3",
 		"epg": 80,
-		"url": "assets/livebox/img/3-80.png",
+		"url": "hooks/livebox/img/3-80.png",
 		"type": "TNT"
 	}, {
 		"channel": 4,
 		"name": "Canal + (plages en clair)",
 		"epg": 34,
-		"url": "assets/livebox/img/4-34.png",
+		"url": "hooks/livebox/img/4-34.png",
 		"type": "TNT"
 	}, {
 		"channel": 5,
 		"name": "France 5",
 		"epg": 47,
-		"url": "assets/livebox/img/5-47.png",
+		"url": "hooks/livebox/img/5-47.png",
 		"type": "TNT"
 	}, {
 		"channel": 6,
 		"name": "M6",
 		"epg": 118,
-		"url": "assets/livebox/img/6-118.png",
+		"url": "hooks/livebox/img/6-118.png",
 		"type": "TNT"
 	}, {
 		"channel": 7,
 		"name": "Arte",
 		"epg": 111,
-		"url": "assets/livebox/img/7-111.png",
+		"url": "hooks/livebox/img/7-111.png",
 		"type": "TNT"
 	}, {
 		"channel": 8,
 		"name": "C8",
 		"epg": 445,
-		"url": "assets/livebox/img/8-445.png",
+		"url": "hooks/livebox/img/8-445.png",
 		"type": "TNT"
 	}, {
 		"channel": 9,
 		"name": "W9",
 		"epg": 119,
-		"url": "assets/livebox/img/9-119.png",
+		"url": "hooks/livebox/img/9-119.png",
 		"type": "TNT"
 	}, {
 		"channel": 10,
 		"name": "TMC",
 		"epg": 195,
-		"url": "assets/livebox/img/10-195.png",
+		"url": "hooks/livebox/img/10-195.png",
 		"type": "TNT"
 	}, {
 		"channel": 11,
 		"name": "TFX",
 		"epg": 446,
-		"url": "assets/livebox/img/11-446.png",
+		"url": "hooks/livebox/img/11-446.png",
 		"type": "TNT"
 	}, {
 		"channel": 12,
 		"name": "NRJ12",
 		"epg": 444,
-		"url": "assets/livebox/img/12-444.png",
+		"url": "hooks/livebox/img/12-444.png",
 		"type": "TNT"
 	}, {
 		"channel": 13,
 		"name": "LCP – Public Sénat",
 		"epg": 234,
-		"url": "assets/livebox/img/13-234.png",
+		"url": "hooks/livebox/img/13-234.png",
 		"type": "TNT"
 	}, {
 		"channel": 14,
 		"name": "France 4",
 		"epg": 78,
-		"url": "assets/livebox/img/14-78.png",
+		"url": "hooks/livebox/img/14-78.png",
 		"type": "TNT"
 	}, {
 		"channel": 15,
 		"name": "BFM TV",
 		"epg": 481,
-		"url": "assets/livebox/img/15-481.png",
+		"url": "hooks/livebox/img/15-481.png",
 		"type": "TNT"
 	}, {
 		"channel": 16,
 		"name": "CNEWS",
 		"epg": 226,
-		"url": "assets/livebox/img/16-226.png",
+		"url": "hooks/livebox/img/16-226.png",
 		"type": "TNT"
 	}, {
 		"channel": 17,
 		"name": "CSTAR",
 		"epg": 458,
-		"url": "assets/livebox/img/17-458.png",
+		"url": "hooks/livebox/img/17-458.png",
 		"type": "TNT"
 	}, {
 		"channel": 18,
 		"name": "Gulli",
 		"epg": 482,
-		"url": "assets/livebox/img/18-482.png",
+		"url": "hooks/livebox/img/18-482.png",
 		"type": "TNT"
 	}, {
 		"channel": 19,
 		"name": "France Ô",
 		"epg": 160,
-		"url": "assets/livebox/img/19-160.png",
+		"url": "hooks/livebox/img/19-160.png",
 		"type": "TNT"
 	}, {
 		"channel": 20,
 		"name": "TF1 Séries Films",
 		"epg": 1404,
-		"url": "assets/livebox/img/20-1404.png",
+		"url": "hooks/livebox/img/20-1404.png",
 		"type": "TNT"
 	}, {
 		"channel": 21,
 		"name": "L’Equipe ",
 		"epg": 1401,
-		"url": "assets/livebox/img/21-1401.png",
+		"url": "hooks/livebox/img/21-1401.png",
 		"type": "TNT"
 	}, {
 		"channel": 22,
 		"name": "6Ter",
 		"epg": 1403,
-		"url": "assets/livebox/img/22-1403.png",
+		"url": "hooks/livebox/img/22-1403.png",
 		"type": "TNT"
 	}, {
 		"channel": 24,
 		"name": "RMC Découverte",
 		"epg": 1400,
-		"url": "assets/livebox/img/24-1400.png",
+		"url": "hooks/livebox/img/24-1400.png",
 		"type": "TNT"
 	}, {
 		"channel": 25,
 		"name": "Chérie 25",
 		"epg": 1399,
-		"url": "assets/livebox/img/25-1399.png",
+		"url": "hooks/livebox/img/25-1399.png",
 		"type": "TNT"
 	}, {
 		"channel": 26,
 		"name": "LCI",
 		"epg": 112,
-		"url": "assets/livebox/img/26-112.png",
+		"url": "hooks/livebox/img/26-112.png",
 		"type": "TNT"
 	}, {
 		"channel": 27,
 		"name": "franceinfo",
 		"epg": 2111,
-		"url": "assets/livebox/img/27-2111.png",
+		"url": "hooks/livebox/img/27-2111.png",
 		"type": "TNT"
 	}, {
 		"channel": 34,
 		"name": "TV5 Monde",
 		"epg": 205,
-		"url": "assets/livebox/img/34-205.png",
+		"url": "hooks/livebox/img/34-205.png",
 		"type": "Mini-généraliste"
 	}, {
 		"channel": 71,
 		"name": "BET",
 		"epg": 1960,
-		"url": "assets/livebox/img/71-1960.png",
+		"url": "hooks/livebox/img/71-1960.png",
 		"type": "Divertissement"
 	}, {
 		"channel": 75,
 		"name": "Comedy central",
 		"epg": 2752,
-		"url": "assets/livebox/img/75-2752.png",
+		"url": "hooks/livebox/img/75-2752.png",
 		"type": "Divertissement"
 	}, {
 		"channel": 86,
 		"name": "Disney Channel",
 		"epg": 58,
-		"url": "assets/livebox/img/86-58.png",
+		"url": "hooks/livebox/img/86-58.png",
 		"type": "Jeunesse"
 	}, {
 		"channel": 87,
 		"name": "Disney Channel +1",
 		"epg": 299,
-		"url": "assets/livebox/img/87-299.png",
+		"url": "hooks/livebox/img/87-299.png",
 		"type": "Jeunesse"
 	}, {
 		"channel": 111,
 		"name": "Vivolta",
 		"epg": 659,
-		"url": "assets/livebox/img/111-659.png",
+		"url": "hooks/livebox/img/111-659.png",
 		"type": "Découverte et art de vivre"
 	}, {
 		"channel": 115,
 		"name": "ULTRA Nature",
 		"epg": 2094,
-		"url": "assets/livebox/img/115-2094.png",
+		"url": "hooks/livebox/img/115-2094.png",
 		"type": "Découverte et art de vivre"
 	}, {
 		"channel": 140,
 		"name": "GINX",
 		"epg": 563,
-		"url": "assets/livebox/img/140-563.png",
+		"url": "hooks/livebox/img/140-563.png",
 		"type": "Jeunes adultes"
 	}, {
 		"channel": 151,
 		"name": "NRJ Hits",
 		"epg": 605,
-		"url": "assets/livebox/img/151-605.png",
+		"url": "hooks/livebox/img/151-605.png",
 		"type": "Musique"
 	}, {
 		"channel": 173,
 		"name": "Equidia",
 		"epg": 64,
-		"url": "assets/livebox/img/173-64.png",
+		"url": "hooks/livebox/img/173-64.png",
 		"type": "Sport"
 	}, {
 		"channel": 205,
 		"name": "QVC",
 		"epg": 1969,
-		"url": "assets/livebox/img/205-1969.png",
+		"url": "hooks/livebox/img/205-1969.png",
 		"type": "Jeux, Services et Téléachat"
 	}, {
 		"channel": 211,
 		"name": "Lucky Jack",
 		"epg": 1061,
-		"url": "assets/livebox/img/211-1061.png",
+		"url": "hooks/livebox/img/211-1061.png",
 		"type": "Jeux, Services et Téléachat"
 	}, {
 		"channel": 214,
 		"name": "Fashion TV",
 		"epg": 1996,
-		"url": "assets/livebox/img/214-1996.png",
+		"url": "hooks/livebox/img/214-1996.png",
 		"type": "Société et culture"
 	}, {
 		"channel": 215,
 		"name": "Luxe TV",
 		"epg": 481,
-		"url": "assets/livebox/img/215-481.png",
+		"url": "hooks/livebox/img/215-481.png",
 		"type": "Société et culture"
 	}, {
 		"channel": 219,
 		"name": "Demain TV",
 		"epg": 57,
-		"url": "assets/livebox/img/219-57.png",
+		"url": "hooks/livebox/img/219-57.png",
 		"type": "Société et culture"
 	}, {
 		"channel": 220,
 		"name": "KTO",
 		"epg": 110,
-		"url": "assets/livebox/img/220-110.png",
+		"url": "hooks/livebox/img/220-110.png",
 		"type": "Société et culture"
 	}, {
 		"channel": 222,
 		"name": "Ouatch TV",
 		"epg": 1705,
-		"url": "assets/livebox/img/222-1705.png",
+		"url": "hooks/livebox/img/222-1705.png",
 		"type": "Société et culture"
 	}, {
 		"channel": 225,
 		"name": "LCP 24/24",
 		"epg": 992,
-		"url": "assets/livebox/img/225-992.png",
+		"url": "hooks/livebox/img/225-992.png",
 		"type": "Information française"
 	}, {
 		"channel": 227,
 		"name": "France 24",
 		"epg": 529,
-		"url": "assets/livebox/img/227-529.png",
+		"url": "hooks/livebox/img/227-529.png",
 		"type": "Information française"
 	}, {
 		"channel": 228,
 		"name": "BFM Business",
 		"epg": 1073,
-		"url": "assets/livebox/img/228-1073.png",
+		"url": "hooks/livebox/img/228-1073.png",
 		"type": "Information française"
 	}, {
 		"channel": 229,
 		"name": "Euronews",
 		"epg": 140,
-		"url": "assets/livebox/img/229-140.png",
+		"url": "hooks/livebox/img/229-140.png",
 		"type": "Information française"
 	}, {
 		"channel": 232,
 		"name": "France 24 (en anglais)",
 		"epg": 671,
-		"url": "assets/livebox/img/232-671.png",
+		"url": "hooks/livebox/img/232-671.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 234,
 		"name": "CNN",
 		"epg": 53,
-		"url": "assets/livebox/img/234-53.png",
+		"url": "hooks/livebox/img/234-53.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 235,
 		"name": "CNBC",
 		"epg": 51,
-		"url": "assets/livebox/img/235-51.png",
+		"url": "hooks/livebox/img/235-51.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 236,
 		"name": "Bloomberg Europe",
 		"epg": 410,
-		"url": "assets/livebox/img/236-410.png",
+		"url": "hooks/livebox/img/236-410.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 237,
 		"name": "BBC World News",
 		"epg": 19,
-		"url": "assets/livebox/img/237-19.png",
+		"url": "hooks/livebox/img/237-19.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 238,
 		"name": "Al Jazeera English",
 		"epg": 525,
-		"url": "assets/livebox/img/238-525.png",
+		"url": "hooks/livebox/img/238-525.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 243,
 		"name": "i24 News",
 		"epg": 781,
-		"url": "assets/livebox/img/243-781.png",
+		"url": "hooks/livebox/img/243-781.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 244,
 		"name": "NHK World Japan",
 		"epg": 830,
-		"url": "assets/livebox/img/244-830.png",
+		"url": "hooks/livebox/img/244-830.png",
 		"type": "Information internationale"
 	}, {
 		"channel": 245,
 		"name": "Deutsche Welle (en anglais)",
 		"epg": 61,
-		"url": "assets/livebox/img/245-61.png",
+		"url": "hooks/livebox/img/245-61.png",
 		"type": "Information internationale"
 	}]
 }
