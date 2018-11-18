@@ -41,4 +41,5 @@ The livebox device is then created, with these associated devicetypes.
 
 Native box: `television`
 the livebox box: `box-Orange TV-title`
+
 2- Enjoy !
