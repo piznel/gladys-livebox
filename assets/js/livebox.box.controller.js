@@ -18,6 +18,7 @@
     vm.currentChannel = '';
     vm.currentUrl = '';
     vm.ipSelectedDevice = '';
+    vm.currentPowerState = 0
 
     vm.init = init;
     vm.switchState = switchState;
@@ -85,7 +86,6 @@
       vm.displayAskDeviceForm = false;
       vm.deviceId = deviceId;
       vm.currentDeviceName = deviceName;
-      vm.currentPowerState = null;
       vm.ipSelectedDevice = ipDevice;
       readJson();
       getData(vm.deviceId);
@@ -96,6 +96,7 @@
         if (devicetype.identifier === 'Power' && devicetype.deviceId === deviceId) {
           vm.currentPowerState = devicetype.lastValue;
           vm.devicePowerId = devicetype.id;
+          $scope.$apply();
         }
       })
     }
@@ -187,8 +188,6 @@
             $scope.$apply()
           }
         }
-
-
       });
     }
 
