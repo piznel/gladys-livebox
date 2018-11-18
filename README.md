@@ -1,6 +1,6 @@
 ### [Version française ici !](README_FR.md)
 
-# gladys-livebox
+# gladys-livebox : a [Gladys](https://github.com/GladysProject) module
 This module allows you to control the Orange Livebox decoder. It works with Gladys' native "television" box.
 It also adds a new box, which allows you to choose the channel on an image mosaic, and manage the basic functions (turn on/off, increase/decrease/mute the sound, change channel) :
 
@@ -45,3 +45,5 @@ Native box: `television`
 the livebox box: `box-Orange TV-title`
 
 2- Enjoy !
+
+Special Thanks to **[Mathieu Andrade](https://github.com/MathieuAndrade)** and **[Vincent Besseau](https://github.com/vincentBesseau)** for their help and support in the realization of my first module for Gladys!
