@@ -1,4 +1,4 @@
-
+### Version française ici !
 
 # gladys-livebox
 This module allows you to control the Orange Livebox decoder. It works with Gladys' native "television" box.
