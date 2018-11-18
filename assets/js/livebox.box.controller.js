@@ -73,7 +73,7 @@
         return devices.map(function(device) {
           return deviceService.getDeviceTypesDevice(device.id)
             .then(function(data) {
-              data.data.map(deviceType => {
+              data.data.map(function(deviceType) {
                 vm.devicetypes.push({ id: deviceType.id, identifier: deviceType.identifier, lastValue: deviceType.lastValue, deviceId: device.id });
               });
               return resolve(vm.devicetypes)
@@ -96,7 +96,6 @@
         if (devicetype.identifier === 'Power' && devicetype.deviceId === deviceId) {
           vm.currentPowerState = devicetype.lastValue;
           vm.devicePowerId = devicetype.id;
-          $scope.$apply();
         }
       })
     }
