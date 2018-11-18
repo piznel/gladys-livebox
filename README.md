@@ -2,17 +2,19 @@
 This module allows you to control the Orange Livebox decoder. It works with Gladys' native "television" box.
 It also adds a new box, which allows you to choose the channel on an image mosaic, and manage the basic functions (turn on/off, increase/decrease/mute the sound, turn on/off the decoder) :
 
+![image](https://user-images.githubusercontent.com/25089531/48671882-ec488a00-eb2e-11e8-8821-5700571b6496.png)
+
 ## Installation
 
 ### 1. Add this module in Gladys
  
 ![image](https://user-images.githubusercontent.com/25089531/48671586-e81a6d80-eb2a-11e8-9450-5c5d8ca43329.png)
 	
-	1 = `gladys-livebox`
-	2 = `0.1.0`
-	3 = `https://github.com/piznel/gladys-livebox.git`
-	4 = `livebox`
-	5 = Go ! :)
+1 = `gladys-livebox`
+2 = `0.1.0`
+3 = `https://github.com/piznel/gladys-livebox.git`
+4 = `livebox`
+5 = Go ! :)
 	
 ### 2. Restart Gladys
 
