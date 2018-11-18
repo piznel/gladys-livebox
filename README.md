@@ -1,10 +1,12 @@
 # gladys-livebox
+This module allows you to control the Orange Livebox decoder. It works with Gladys' native "television" box.
+It also adds a new box, which allows you to choose the channel on an image mosaic, and manage the basic functions (turn on/off, increase/decrease/mute the sound, turn on/off the decoder) :
+[image]
 
 ## Installation
 
-* Add this module in Gladys
-* Restart Gladys
-* Update LIVEBOX_TV on Gladys parameters with value livebox TV ip ( You can find it by connecting to the management interface of your Livebox )
-* Click on livebox configuration button to install The Livebox decoder
-* Attach the Livebox decoder to a room
-* Add the Television Box, enjoy !
+ 1. Add this module in Gladys
+	 
+ 2. Restart Gladys
+ 3. Update LIVEBOX_TV parameters
+ 4. Set up the box
