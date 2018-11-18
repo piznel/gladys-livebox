@@ -33,35 +33,35 @@
     function init(id) {
       vm.boxId = id;
       boxService.getById(id)
-      .then(function(data) {
-        vm.box = data.data;
-        getDevices();
-      })
-       waitForNewValue();
-       return
+        .then(function(data) {
+          vm.box = data.data;
+          getDevices();
+        })
+      waitForNewValue();
+      return
     }
 
     function getDevices() {
-      return deviceService.get(undefined,undefined,'livebox')
+      return deviceService.get(undefined, undefined, 'livebox')
         .then(function(data) {
-        return getDevicesLivebox(data.data)
-      })
-      .then(function(result) {
-        return getDeviceTypesLivebox(result)
-      })
-      .then(function(result){
+          return getDevicesLivebox(data.data)
+        })
+        .then(function(result) {
+          return getDeviceTypesLivebox(result)
+        })
+        .then(function(result) {
           if (vm.box.params && vm.box.params.deviceId) {
-          setBoxInformation(vm.box.params.deviceId, vm.box.params.name, vm.box.params.ip);
-        } else {
-          vm.displayAskDeviceForm = true;
-        };     
-      })
+            setBoxInformation(vm.box.params.deviceId, vm.box.params.name, vm.box.params.ip);
+          } else {
+            vm.displayAskDeviceForm = true;
+          };
+        })
     }
 
     function getDevicesLivebox(devices) {
       return new Promise(function(resolve, reject) {
         devices.forEach(function(device) {
-            vm.devices.push({ id: device.id, name: device.name, ip: device.identifier });
+          vm.devices.push({ id: device.id, name: device.name, ip: device.identifier });
         })
         return resolve(vm.devices);
       })
@@ -73,12 +73,11 @@
           return deviceService.getDeviceTypesDevice(device.id)
             .then(function(data) {
               data.data.map(deviceType => {
-              vm.devicetypes.push({ id: deviceType.id, identifier: deviceType.identifier, lastValue: deviceType.lastValue, deviceId: device.id });
+                vm.devicetypes.push({ id: deviceType.id, identifier: deviceType.identifier, lastValue: deviceType.lastValue, deviceId: device.id });
               });
-              resolve(vm.devicetypes)
+              return resolve(vm.devicetypes)
             })
         });
-        return resolve(vm.devicetypes);
       })
     }
 
@@ -94,18 +93,18 @@
 
     function getData(deviceId) {
       vm.devicetypes.map(function(devicetype) {
-        if ( devicetype.identifier === 'Power' && devicetype.deviceId === deviceId ) {
+        if (devicetype.identifier === 'Power' && devicetype.deviceId === deviceId) {
           vm.currentPowerState = devicetype.lastValue;
-          vm.devicePowerId = devicetype.id;          
+          vm.devicePowerId = devicetype.id;
         }
       })
     }
-    
+
     function selectDevice(device) {
       if (typeof(device) === 'string') {
         device = JSON.parse(device);
       }
-      boxService.update(vm.boxId, { params: { deviceId: device.id, name: device.name, ip:device.ip } });
+      boxService.update(vm.boxId, { params: { deviceId: device.id, name: device.name, ip: device.ip } });
       // update box
       setBoxInformation(device.id, device.name, device.ip);
     }
@@ -163,7 +162,7 @@
     }
 
     function pressKey(key) {
-      return televisionService.pressKey({ device: vm.deviceId, key: 'epg:'+key })
+      return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + key })
         .then(function() {
 
         });
@@ -178,21 +177,21 @@
         }
       });
       io.socket.on('livebox-channel', function(newChannel) {
-          if(vm.ipSelectedDevice == newChannel.ip) {
-            var tmpChannel = vm.channels.filter(function(channel) {
-              return (channel.epg === newChannel.channel)
-            });
-            if(tmpChannel.length === 1) {
+        if (vm.ipSelectedDevice == newChannel.ip) {
+          var tmpChannel = vm.channels.filter(function(channel) {
+            return (channel.epg === newChannel.channel)
+          });
+          if (tmpChannel.length === 1) {
             vm.currentChannel = tmpChannel[0].name;
             vm.currentUrl = tmpChannel[0].url;
             $scope.$apply()
-            }
           }
-         
-         
+        }
+
+
       });
-	  }
-	
+    }
+
     function readJson() {
       var request = {
         method: 'get',
@@ -202,11 +201,10 @@
       };
       vm.channels = new Array;
       $http(request)
-        .success(function (data) {
+        .success(function(data) {
           vm.channels = data.orange;
         })
-        .error(function () {
-      });
-	  }
+        .error(function() {});
+    }
   }
 })();
