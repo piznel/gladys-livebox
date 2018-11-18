@@ -2,7 +2,7 @@
 
 ### [English version](README.md)
 
-# gladys-livebox
+# gladys-livebox : un module pour [Gladys](https://github.com/GladysProject)
 Ce module vous permet de piloter le décodeur de la Livebox Orange depuis Gladys. Il est compatible avec la box native 'télévision'.
 Il ajoute également une nouvelle box, qui vous permet de choisir votre chaîne sur une mosaïque d'image et de gérer les fonctions de base de votre décodeur (marche/arrêt, augmenter/diminuer/couper le son, avancer/reculer dans les chaînes) :
 
@@ -47,3 +47,5 @@ Box native : `television`
 La box livebox : `box-Orange TV-title`
 
 2- Amusez-vous bien !
+
+Un grand merci à **[Mathieu Andrade] (https://github.com/MathieuAndrade)** et **[Vincent Besseau] (https://github.com/vincentBesseau)** pour leur aide et leur soutien dans la réalisation de mon premier module pour Gladys !
