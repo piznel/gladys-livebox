@@ -6,6 +6,13 @@ It also adds a new box, which allows you to choose the channel on an image mosai
 
 ![image](https://user-images.githubusercontent.com/25089531/48671882-ec488a00-eb2e-11e8-8821-5700571b6496.png)
 
+## Prerequisites
+This module requires:
+ - Gladys version 3.11.4 or higher
+
+## Limitations
+Currently, can only manage one decoder.
+
 ## Installation
 
 ### 1. Add this module in Gladys

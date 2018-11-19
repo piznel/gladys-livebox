@@ -19,6 +19,7 @@
     vm.currentUrl = '';
     vm.ipSelectedDevice = '';
     vm.currentPowerState = 0
+    vm.currentEpg = '';
 
     vm.init = init;
     vm.switchState = switchState;
@@ -113,7 +114,15 @@
     function switchState() {
       return televisionService.switchState({ device: vm.deviceId, state: !vm.currentPowerState, deviceTypeId: vm.devicePowerId })
         .then(function() {
-
+          if(vm.currentPowerState) {
+            vm.currentChannel = 'Mosaïque Orange';
+            vm.currentUrl = 'hooks/livebox/img/orange_small.png';
+            vm.currentEpg = 0;
+          } else {
+            vm.currentChannel = '';
+            vm.currentUrl = '';
+            vm.currentEpg = '';
+          }
         });
     }
 
@@ -148,17 +157,49 @@
 
 
     function programPlus() {
-      return televisionService.programPlus({ device: vm.deviceId, controlType: 'programPlus' })
-        .then(function() {
-
-        });
+      if (vm.currentEpg !== '') {
+        var currentIndex = vm.channels.findIndex(function(channel) {
+          return ( channel.epg === vm.currentEpg)
+        })
+        if (currentIndex + 1 < vm.channels.length) {
+          return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[currentIndex + 1].epg })
+          .then(function() {
+            vm.currentChannel = vm.channels[currentIndex + 1].name;
+            vm.currentUrl = vm.channels[currentIndex + 1].url;
+            vm.currentEpg = vm.channels[currentIndex + 1].epg; 
+          });
+        } else {
+          return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[1].epg })
+          .then(function() {
+            vm.currentChannel = vm.channels[1].name;
+            vm.currentUrl = vm.channels[1].url;
+            vm.currentEpg = vm.channels[1].epg;  
+          });
+        }
+      }
     }
 
     function programMinus() {
-      return televisionService.programMinus({ device: vm.deviceId, controlType: 'programMinus' })
-        .then(function() {
-
-        });
+      if (vm.currentEpg !== '') {
+        var currentIndex = vm.channels.findIndex(function(channel) {
+          return ( channel.epg === vm.currentEpg)
+        })
+        if (currentIndex > 1) {
+          return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[currentIndex - 1].epg })
+          .then(function() {
+            vm.currentChannel = vm.channels[currentIndex - 1].name;
+            vm.currentUrl = vm.channels[currentIndex - 1].url;
+            vm.currentEpg = vm.channels[currentIndex - 1].epg;  
+          });
+        } else {
+          return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[vm.channels.length - 1].epg })
+          .then(function() {
+            vm.currentChannel = vm.channels[vm.channels.length - 1].name;
+            vm.currentUrl = vm.channels[vm.channels.length - 1].url;
+            vm.currentEpg = vm.channels[vm.channels.length - 1].epg;  
+          });
+        }
+      }
     }
 
     function pressKey(key) {
@@ -184,6 +225,8 @@
           if (tmpChannel.length === 1) {
             vm.currentChannel = tmpChannel[0].name;
             vm.currentUrl = tmpChannel[0].url;
+            vm.currentEpg = tmpChannel[0].epg;
+
             $scope.$apply()
           }
         }

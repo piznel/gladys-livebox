@@ -1,10 +1,10 @@
 <!-- box-->
-<div class="box box-primary" data-ng-controller="liveboxCtrl as vm" ng-init="vm.init(<%= boxId %>);">
+<div class="box box-primary" data-ng-controller="liveboxboxCtrl as vm" ng-init="vm.init(<%= boxId %>);">
   <div class="box-header with-border">
     <span><i class="fa fa-television"></i></span>
     <h3 ng-show="vm.displayAskDeviceForm" class="box-title">Livebox TV</h3>
     <span ng-show="vm.deviceId" class="ng-cloak">
-      <h3 class="box-title">{{vm.currentDeviceName}}<span ng-show="vm.currentChannel.length > 0"> ( {{vm.currentChannel}} )</span></h3>
+      <h3 class="box-title">{{vm.currentDeviceName}}<span ng-show="vm.currentChannel.length > 0"> ({{vm.currentChannel}})</span></h3>
       
       
     </span>

@@ -1,5 +1,11 @@
 {
 	"orange": [{
+		"channel": 0,
+		"name": "Mosaïque Orange",
+		"epg": 0,
+		"url": "hooks/livebox/img/orange_small.png",
+		"type": "TNT"
+	}, {
 		"channel": 1,
 		"name": "TF1",
 		"epg": 192,

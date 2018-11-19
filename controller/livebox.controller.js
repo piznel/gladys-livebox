@@ -1,0 +1,107 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('gladys')
+    .controller('liveboxCtrl', liveboxCtrl);
+
+  BroadlinkCtrl.$inject = ['liveboxCtrl', 'notificationService', '$scope'];
+
+  function liveboxCtrl(liveboxCtrl, notificationService, $scope) {
+    /* jshint validthis: true */
+    var vm = this;
+    vm.ipDecoder = '';
+
+    var param = {
+      name: 'DECODEUR_LIVEBOX',
+      value: '1.1.1.1',
+      type: 'hidden'
+    }
+
+    var boxLivebox = {
+      uuid: '451a8766-407b-43ca-b1d4-2f2787ef4f6b',
+      title: 'Orange TV',
+      path: 'api/hooks/livebox/livebox.ejs',
+      view: 'dashboard'
+    }
+
+    vm.saveParams = saveParams;
+
+    activate()
+
+    function activate() {
+
+      return gladys.param.getValue(param.name)
+        .catch(() => {
+            notificationService.error('please enter the IP of the decoder and then run a new configuration')
+          return gladys.param.setValue(param);
+        })
+        .then((result) => {
+          if (ip !== '1.1.1.1' && ip.length > 0) {
+            vm.ipDecoder = ip;
+          } else {
+            notificationService.error('please enter the IP of the decoder and then run a new configuration')
+          }
+        })
+    }
+
+    function saveParams() {
+      param.value = vm.ipDecoder;
+      return gladys.param.setValue(param)
+        .then((result) => {
+          return createDevice(result);
+        })
+        .then(() => {
+          gladys.boxType.create(boxLivebox)
+            .then(function(boxType) {
+                notificationService.success(`box type created, with id ${boxType.id} !`);
+            })
+            .catch(function(err) {
+                notificationService.error('impossible to create the Livebox type :', err)
+            });
+        })
+    }
+
+    function createDevice(ip) {
+      //return new Promise(function(resolve, reject) {
+      // Check if IP is valid IP address
+      var ipRegExp = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
+      if (!ipRegExp.test(ip)) { reject(new Error('You entered invalid IP address!')) }
+      if (ip === '1.1.1.1') { reject(new Error('Please indicate the correct IP address of your decoder in the "DECODEUR_LIVEBOX" parameter.')) }
+
+      // if valid IP, create device and deviceTypes
+      const Newdevice = {
+        device: {
+          name: 'livebox decoder',
+          protocol: 'wifi',
+          service: 'livebox',
+          identifier: ip
+        },
+        types: [{
+            name: 'Power',
+            type: 'binary',
+            category: 'television',
+            identifier: 'Power',
+            sensor: false,
+            min: 0,
+            max: 1,
+          },
+          {
+            name: 'Mute',
+            type: 'push',
+            identifier: 'Mute',
+            category: 'television',
+            sensor: false,
+            min: 0,
+            max: 1,
+          },
+        ]
+      }
+      return gladys.device.create(Newdevice)
+        .then((result) => {
+            notificationService.success('device "livebox decoder" created, with id ' + result.device.id)
+        });
+    }
+
+  }
+})();

@@ -8,6 +8,13 @@ Il ajoute également une nouvelle box, qui vous permet de choisir votre chaîne 
 
 ![image](https://user-images.githubusercontent.com/25089531/48671882-ec488a00-eb2e-11e8-8821-5700571b6496.png)
 
+## Prérequis
+Pour fonctionner, ce module nécessite :
+ - Gladys version 3.11.4 au minimum
+
+## Limitations
+Actuellement, ne peut gérer qu'un seul décodeur.
+ 
 ## Installation
 
 ### 1. Ajouter ce module à Gladys

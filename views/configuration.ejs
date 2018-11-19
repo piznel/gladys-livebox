@@ -1,0 +1,25 @@
+<script src="/hooks/livebox/js/livebox.controller.js"></script>
+
+<div data-ng-controller="liveboxCtrl as vm">
+  <div class="box skin-box box-default no-border ng-cloak">
+    <div class="box-header with-border">
+      <h3 class="box-title">Décodeur Livebox</h3>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>IP Décodeur:</label>
+
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-laptop"></i>
+      </div>
+      <input ng-model="vm.ipDecoder" type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="btn-group">
+      <button type="button" ng-click="vm.LearningMode(vm.selectedDevice,vm._name[$index])" class="btn btn-primary btn-flat btn-sm dropdown-toggle" aria-expanded="false">{{ 'BROADLINK_MODE' | translate }}</button>
+    </div>
+  </div>
+</div>
