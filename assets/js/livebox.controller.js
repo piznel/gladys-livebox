@@ -5,9 +5,9 @@
     .module('gladys')
     .controller('liveboxCtrl', liveboxCtrl);
 
-  BroadlinkCtrl.$inject = ['liveboxCtrl', 'notificationService', '$scope'];
+    liveboxCtrl.$inject = ['notificationService', 'deviceService','paramService', 'moduleService', '$scope'];
 
-  function liveboxCtrl(liveboxCtrl, notificationService, $scope) {
+  function liveboxCtrl(notificationService, deviceService, paramService, moduleService, $scope) {
     /* jshint validthis: true */
     var vm = this;
     vm.ipDecoder = '';
@@ -15,14 +15,8 @@
     var param = {
       name: 'DECODEUR_LIVEBOX',
       value: '1.1.1.1',
-      type: 'hidden'
-    }
-
-    var boxLivebox = {
-      uuid: '451a8766-407b-43ca-b1d4-2f2787ef4f6b',
-      title: 'Orange TV',
-      path: 'api/hooks/livebox/livebox.ejs',
-      view: 'dashboard'
+      type: 'hidden',
+      module: ''
     }
 
     vm.saveParams = saveParams;
@@ -30,35 +24,30 @@
     activate()
 
     function activate() {
-
-      return gladys.param.getValue(param.name)
-        .catch(() => {
-            notificationService.error('please enter the IP of the decoder and then run a new configuration')
-          return gladys.param.setValue(param);
-        })
-        .then((result) => {
-          if (ip !== '1.1.1.1' && ip.length > 0) {
-            vm.ipDecoder = ip;
-          } else {
-            notificationService.error('please enter the IP of the decoder and then run a new configuration')
-          }
-        })
+      console.log('ACTIVATE')
+      return getLiveboxId()
+      .then(function(id) {
+        return paramService.get(id)
+      })
+      .then(function(ip) {
+        console.log(ip)
+        if (ip == '1.1.1.1' ) {
+          notificationService.errorNotification('please enter the IP of the decoder and then run a configuration')
+        }
+        vm.ipDecoder = ip;
+        console.log('vm.ipDecoder 1', vm.ipDecoder)
+      })
     }
 
     function saveParams() {
+      console.log('vm.ipDecoder 2', vm.ipDecoder)
       param.value = vm.ipDecoder;
-      return gladys.param.setValue(param)
+      return paramService.update(param)
         .then((result) => {
           return createDevice(result);
         })
         .then(() => {
-          gladys.boxType.create(boxLivebox)
-            .then(function(boxType) {
-                notificationService.success(`box type created, with id ${boxType.id} !`);
-            })
-            .catch(function(err) {
-                notificationService.error('impossible to create the Livebox type :', err)
-            });
+
         })
     }
 
@@ -97,10 +86,21 @@
           },
         ]
       }
-      return gladys.device.create(Newdevice)
+      return deviceService.create(Newdevice)
         .then((result) => {
-            notificationService.success('device "livebox decoder" created, with id ' + result.device.id)
+            notificationService.successNotification('device "livebox decoder" created, with id ' + result.device.id)
         });
+    }
+
+    function getLiveboxId() {
+      return moduleService.get()
+        .then(function(modules) {
+          for (let module of modules) {
+            if (module.slug == 'livebox') {
+              return Promise.resolve(module.id)
+            }
+          }
+        })
     }
 
   }
