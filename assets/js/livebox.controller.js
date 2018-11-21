@@ -5,7 +5,7 @@
     .module('gladys')
     .controller('liveboxCtrl', liveboxCtrl);
 
-    liveboxCtrl.$inject = ['notificationService', 'deviceService','paramService', 'moduleService', '$scope'];
+  liveboxCtrl.$inject = ['notificationService', 'deviceService', 'paramService', 'moduleService', '$scope'];
 
   function liveboxCtrl(notificationService, deviceService, paramService, moduleService, $scope) {
     /* jshint validthis: true */
@@ -13,35 +13,38 @@
 
     vm.ipDecoder = '';
     vm.moduleId = '';
-    
+
     vm.saveParams = saveParams;
     vm.init = init;
-    
+
     //vm.moduleId;
 
-    function init(moduleId, moduleSlug){
-        vm.moduleId = moduleId;
-        //param.module = moduleId;
-        vm.moduleSlug = moduleSlug;
-        getParam(moduleId);
+    function init(moduleId, moduleSlug) {
+      var child = document.getElementsByClassName('nav nav-tabs');
+      child[0].parentNode.removeChild(child[0]);
+
+      vm.moduleId = moduleId;
+      //param.module = moduleId;
+      vm.moduleSlug = moduleSlug;
+      getParam(moduleId);
     }
 
-    function getParam(moduleId){
-        paramService.getByModule(moduleId)
-            .then(function(data){
-                vm.params = data.data
-                if(vm.params[0].value === '1.1.1.1') {
-                  notificationService.errorNotification('please enter the IP of the decoder and then run a configuration')
-                }
-                vm.ipDecoder = vm.params[0].value
-            });
+    function getParam(moduleId) {
+      paramService.getByModule(moduleId)
+        .then(function(data) {
+          vm.params = data.data
+          if (vm.params[0].value === '1.1.1.1') {
+            notificationService.errorNotification('please enter the IP of the decoder and then run a configuration')
+          }
+          vm.ipDecoder = vm.params[0].value
+        });
     }
 
-    function updateParam(name, param){
-        return paramService.update(name, param)
-          .then(function(){
+    function updateParam(name, param) {
+      return paramService.update(name, param)
+        .then(function() {
 
-          });
+        });
     }
 
     function saveParams() {
@@ -66,34 +69,35 @@
 
       // if valid IP, create device and deviceTypes
       const newDevice = {
-          name: 'livebox decoder',
-          protocol: 'wifi',
-          service: 'livebox',
-          identifier: ip
-        };
+        name: 'livebox decoder',
+        protocol: 'wifi',
+        service: 'livebox',
+        identifier: ip
+      };
 
-        const newType = [{
-            name: 'Power',
-            type: 'binary',
-            category: 'television',
-            identifier: 'Power',
-            sensor: false,
-            min: 0,
-            max: 1,
-          },
-          {
-            name: 'Mute',
-            type: 'push',
-            identifier: 'Mute',
-            category: 'television',
-            sensor: false,
-            min: 0,
-            max: 1,
-          }];
+      const newType = [{
+          name: 'Power',
+          type: 'binary',
+          category: 'television',
+          identifier: 'Power',
+          sensor: false,
+          min: 0,
+          max: 1,
+        },
+        {
+          name: 'Mute',
+          type: 'push',
+          identifier: 'Mute',
+          category: 'television',
+          sensor: false,
+          min: 0,
+          max: 1,
+        }
+      ];
 
       return deviceService.create(newDevice, newType)
         .then(function(data) {
-            notificationService.successNotification('device "livebox decoder" created, with id ' + data.data.device.id)
+          notificationService.successNotification('device "livebox decoder" created, with id ' + data.data.device.id)
         })
         .catch(function(err) {
           notificationService.errorNotification('error when creating the device and deviceTypes.')
