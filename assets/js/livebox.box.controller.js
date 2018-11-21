@@ -5,7 +5,7 @@
     .module('gladys')
     .controller('liveboxboxCtrl', liveboxboxCtrl);
 
-    liveboxboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$scope'];
+  liveboxboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$scope'];
 
   function liveboxboxCtrl(televisionService, deviceService, boxService, $http, $scope) {
     var vm = this;
@@ -114,7 +114,7 @@
     function switchState() {
       return televisionService.switchState({ device: vm.deviceId, state: !vm.currentPowerState, deviceTypeId: vm.devicePowerId })
         .then(function() {
-          if(vm.currentPowerState) {
+          if (vm.currentPowerState) {
             vm.currentChannel = 'Mosaïque Orange';
             vm.currentUrl = 'hooks/livebox/img/orange_small.png';
             vm.currentEpg = 0;
@@ -159,22 +159,22 @@
     function programPlus() {
       if (vm.currentEpg !== '') {
         var currentIndex = vm.channels.findIndex(function(channel) {
-          return ( channel.epg === vm.currentEpg)
+          return (channel.epg === vm.currentEpg)
         })
         if (currentIndex + 1 < vm.channels.length) {
           return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[currentIndex + 1].epg })
-          .then(function() {
-            vm.currentChannel = vm.channels[currentIndex + 1].name;
-            vm.currentUrl = vm.channels[currentIndex + 1].url;
-            vm.currentEpg = vm.channels[currentIndex + 1].epg; 
-          });
+            .then(function() {
+              vm.currentChannel = vm.channels[currentIndex + 1].name;
+              vm.currentUrl = vm.channels[currentIndex + 1].url;
+              vm.currentEpg = vm.channels[currentIndex + 1].epg;
+            });
         } else {
           return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[1].epg })
-          .then(function() {
-            vm.currentChannel = vm.channels[1].name;
-            vm.currentUrl = vm.channels[1].url;
-            vm.currentEpg = vm.channels[1].epg;  
-          });
+            .then(function() {
+              vm.currentChannel = vm.channels[1].name;
+              vm.currentUrl = vm.channels[1].url;
+              vm.currentEpg = vm.channels[1].epg;
+            });
         }
       }
     }
@@ -182,22 +182,22 @@
     function programMinus() {
       if (vm.currentEpg !== '') {
         var currentIndex = vm.channels.findIndex(function(channel) {
-          return ( channel.epg === vm.currentEpg)
+          return (channel.epg === vm.currentEpg)
         })
         if (currentIndex > 1) {
           return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[currentIndex - 1].epg })
-          .then(function() {
-            vm.currentChannel = vm.channels[currentIndex - 1].name;
-            vm.currentUrl = vm.channels[currentIndex - 1].url;
-            vm.currentEpg = vm.channels[currentIndex - 1].epg;  
-          });
+            .then(function() {
+              vm.currentChannel = vm.channels[currentIndex - 1].name;
+              vm.currentUrl = vm.channels[currentIndex - 1].url;
+              vm.currentEpg = vm.channels[currentIndex - 1].epg;
+            });
         } else {
           return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + vm.channels[vm.channels.length - 1].epg })
-          .then(function() {
-            vm.currentChannel = vm.channels[vm.channels.length - 1].name;
-            vm.currentUrl = vm.channels[vm.channels.length - 1].url;
-            vm.currentEpg = vm.channels[vm.channels.length - 1].epg;  
-          });
+            .then(function() {
+              vm.currentChannel = vm.channels[vm.channels.length - 1].name;
+              vm.currentUrl = vm.channels[vm.channels.length - 1].url;
+              vm.currentEpg = vm.channels[vm.channels.length - 1].epg;
+            });
         }
       }
     }
