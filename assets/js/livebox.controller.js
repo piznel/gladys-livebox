@@ -10,45 +10,51 @@
   function liveboxCtrl(notificationService, deviceService, paramService, moduleService, $scope) {
     /* jshint validthis: true */
     var vm = this;
-    vm.ipDecoder = '';
 
-    var param = {
-      name: 'DECODEUR_LIVEBOX',
-      value: '1.1.1.1',
-      type: 'hidden',
-      module: ''
+    vm.ipDecoder = '';
+    vm.moduleId = '';
+    
+    vm.saveParams = saveParams;
+    vm.init = init;
+    
+    //vm.moduleId;
+
+    function init(moduleId, moduleSlug){
+        vm.moduleId = moduleId;
+        //param.module = moduleId;
+        vm.moduleSlug = moduleSlug;
+        getParam(moduleId);
     }
 
-    vm.saveParams = saveParams;
+    function getParam(moduleId){
+        paramService.getByModule(moduleId)
+            .then(function(data){
+                vm.params = data.data
+                if(vm.params[0].value === '1.1.1.1') {
+                  notificationService.errorNotification('please enter the IP of the decoder and then run a configuration')
+                }
+                vm.ipDecoder = vm.params[0].value
+            });
+    }
 
-    activate()
+    function updateParam(name, param){
+        return paramService.update(name, param)
+          .then(function(){
 
-    function activate() {
-      console.log('ACTIVATE')
-      return getLiveboxId()
-      .then(function(id) {
-        return paramService.get(id)
-      })
-      .then(function(ip) {
-        console.log(ip)
-        if (ip == '1.1.1.1' ) {
-          notificationService.errorNotification('please enter the IP of the decoder and then run a configuration')
-        }
-        vm.ipDecoder = ip;
-        console.log('vm.ipDecoder 1', vm.ipDecoder)
-      })
+          });
     }
 
     function saveParams() {
-      console.log('vm.ipDecoder 2', vm.ipDecoder)
-      param.value = vm.ipDecoder;
-      return paramService.update(param)
+      var param = {
+        name: 'DECODEUR_LIVEBOX',
+        value: vm.ipDecoder,
+        type: 'hidden',
+        module: vm.moduleId
+      }
+      return paramService.update('DECODEUR_LIVEBOX', param)
         .then((result) => {
-          return createDevice(result);
-        })
-        .then(() => {
-
-        })
+          return createDevice(vm.ipDecoder);
+        });
     }
 
     function createDevice(ip) {
@@ -59,14 +65,14 @@
       if (ip === '1.1.1.1') { reject(new Error('Please indicate the correct IP address of your decoder in the "DECODEUR_LIVEBOX" parameter.')) }
 
       // if valid IP, create device and deviceTypes
-      const Newdevice = {
-        device: {
+      const newDevice = {
           name: 'livebox decoder',
           protocol: 'wifi',
           service: 'livebox',
           identifier: ip
-        },
-        types: [{
+        };
+
+        const newType = [{
             name: 'Power',
             type: 'binary',
             category: 'television',
@@ -83,24 +89,15 @@
             sensor: false,
             min: 0,
             max: 1,
-          },
-        ]
-      }
-      return deviceService.create(Newdevice)
-        .then((result) => {
-            notificationService.successNotification('device "livebox decoder" created, with id ' + result.device.id)
-        });
-    }
+          }];
 
-    function getLiveboxId() {
-      return moduleService.get()
-        .then(function(modules) {
-          for (let module of modules) {
-            if (module.slug == 'livebox') {
-              return Promise.resolve(module.id)
-            }
-          }
+      return deviceService.create(newDevice, newType)
+        .then(function(data) {
+            notificationService.successNotification('device "livebox decoder" created, with id ' + data.data.device.id)
         })
+        .catch(function(err) {
+          notificationService.errorNotification('error when creating the device and deviceTypes.')
+        });
     }
 
   }

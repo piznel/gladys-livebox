@@ -3,11 +3,11 @@
 
   angular
     .module('gladys')
-    .controller('liveboxCtrl', liveboxCtrl);
+    .controller('liveboxboxCtrl', liveboxboxCtrl);
 
-  liveboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$scope'];
+    liveboxboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$scope'];
 
-  function liveboxCtrl(televisionService, deviceService, boxService, $http, $scope) {
+  function liveboxboxCtrl(televisionService, deviceService, boxService, $http, $scope) {
     var vm = this;
 
     vm.devices = [];
