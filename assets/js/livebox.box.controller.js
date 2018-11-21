@@ -204,8 +204,11 @@
 
     function pressKey(key) {
       return televisionService.pressKey({ device: vm.deviceId, key: 'epg:' + key })
-        .then(function() {
-
+        .then(function(result) {
+          vm.currentEpg = key;
+          if (!vm.currentPowerState) {
+            vm.currentPowerState = !vm.currentPowerState;
+          }
         });
     }
 
