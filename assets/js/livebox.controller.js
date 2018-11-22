@@ -17,14 +17,11 @@
     vm.saveParams = saveParams;
     vm.init = init;
 
-    //vm.moduleId;
-
     function init(moduleId, moduleSlug) {
       var child = document.getElementsByClassName('nav nav-tabs');
       child[0].parentNode.removeChild(child[0]);
 
       vm.moduleId = moduleId;
-      //param.module = moduleId;
       vm.moduleSlug = moduleSlug;
       getParam(moduleId);
     }

@@ -5,8 +5,6 @@
     <h3 ng-show="vm.displayAskDeviceForm" class="box-title">Livebox TV</h3>
     <span ng-show="vm.deviceId" class="ng-cloak">
       <h3 class="box-title">{{vm.currentDeviceName}}<span ng-show="vm.currentChannel.length > 0"> ({{vm.currentChannel}})</span></h3>
-
-
     </span>
     <div ng-show="vm.deviceId" class="pull-right box-tools">
       <img ng-src="{{vm.currentUrl}}" ng-show="vm.currentUrl.length > 0" style="width: 45px;height:25px">
