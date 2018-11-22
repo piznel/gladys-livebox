@@ -37,13 +37,6 @@
         });
     }
 
-    function updateParam(name, param) {
-      return paramService.update(name, param)
-        .then(function() {
-
-        });
-    }
-
     function saveParams() {
       var param = {
         name: 'DECODEUR_LIVEBOX',
@@ -52,7 +45,7 @@
         module: vm.moduleId
       }
       return paramService.update('DECODEUR_LIVEBOX', param)
-        .then((result) => {
+        .then(function(result) {
           return createDevice(vm.ipDecoder);
         });
     }
@@ -65,14 +58,14 @@
       if (ip === '1.1.1.1') { reject(new Error('Please indicate the correct IP address of your decoder in the "DECODEUR_LIVEBOX" parameter.')) }
 
       // if valid IP, create device and deviceTypes
-      const newDevice = {
+      var newDevice = {
         name: 'livebox decoder',
         protocol: 'wifi',
         service: 'livebox',
         identifier: ip
       };
 
-      const newType = [{
+      var newType = [{
           name: 'Power',
           type: 'binary',
           category: 'television',

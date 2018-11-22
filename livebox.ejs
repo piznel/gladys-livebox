@@ -19,7 +19,7 @@
     <div ng-show="vm.deviceId" class="container-fluid ng-cloak" style="height:250px; overflow:auto">
       <div class="row-fluid justify-content-center align-items-center">
         <div class="col-xs-4 col-sm-3 col-md-2 text-center" ng-repeat="channel in vm.channels">
-          <img class="btn btn-default" ng-src="{{channel.url}}" alt="{{channel.name}}" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name; vm.currentUrl = channel.url" style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
+          <img class="btn btn-default" ng-src="{{channel.url}}" title="{{channel.name}} ({{channel.type}})" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name; vm.currentUrl = channel.url" style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
         </div>
       </div>
     </div>
