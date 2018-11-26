@@ -217,6 +217,10 @@
       io.socket.on('newDeviceState', function(deviceState) {
         if (deviceState.devicetype === vm.devicePowerId) {
           vm.currentPowerState = deviceState.value;
+          if (vm.currentPowerState === '0') {
+            vm.currentUrl = '';
+            vm.currentChannel = '';
+          }
           $scope.$apply();
         }
       });
