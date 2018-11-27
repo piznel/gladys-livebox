@@ -31,17 +31,16 @@ Actuellement, ne peut gérer qu'un seul décodeur.
 
 ![image](https://user-images.githubusercontent.com/25089531/48671552-3d09b400-eb2a-11e8-9ec1-2e683253f71c.png)
 
-### 3. Mettre-à-jour le paramètre LIVEBOX_TV
+### 3. Renseigner l'adresse IP de votre décodeur
+
+Cliquez sur le bouton **configuration** du module 'gladys-livebox' dans la liste de vos modules, ce qui ouvre la page de configuration :
  
- ![image](https://user-images.githubusercontent.com/25089531/48671595-29128200-eb2b-11e8-8c72-e31ec86c68a2.png)
+![image](https://user-images.githubusercontent.com/25089531/49091316-d427e780-f25f-11e8-8c76-442fc05faa24.png)
  
- avec l'adresse IP de votre décodeur ( vous pouvez le trouver dans l'interface de gestion de votre Livebox ; elle est de la forme `192.168.1.22` )
+ Indiquez l'adresse IP de votre décodeur ( vous pouvez le trouver dans l'interface de gestion de votre Livebox ; elle est de la forme `192.168.1.22` )
 
 ### 4. Ajouter le périphérique 'livebox decoder'
-Cliquez sur le bouton **configuration** du module 'gladys-livebox' dans la liste de vos modules, puis sur le nouveau bouton configuration **configuration** de la page qui s'ouvre :
-
-![image](https://user-images.githubusercontent.com/25089531/48671733-1c8f2900-eb2d-11e8-96ab-527f728cc60e.png)
-
+Cliquez sur le bouton **configuration**.
 Le périphérique 'livebox decoder' est alors créé, avec ses périphériques associés.
 **Important** : Il faut impérativement affecter votre `livebox decoder` à une pièce, dans la gestion de vos périphériques. 
 
