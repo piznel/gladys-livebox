@@ -11,7 +11,7 @@ This module requires:
  - Gladys version 3.11.4 or higher
 
 ## Limitations
-Currently, can only manage one decoder.
+Currently, can only manage one decoder. Only tested with Livebox and decoder V4.
 
 ## Installation
 
@@ -29,17 +29,15 @@ Currently, can only manage one decoder.
 
 ![image](https://user-images.githubusercontent.com/25089531/48671552-3d09b400-eb2a-11e8-9ec1-2e683253f71c.png)
 
-### 3. Update LIVEBOX_TV parameters
+### 3. Update parameters' Livebox
+ Click on the Livebox module configuration button : the configuration page opens.
  
- ![image](https://user-images.githubusercontent.com/25089531/48671595-29128200-eb2b-11e8-8c72-e31ec86c68a2.png)
+ ![image](https://user-images.githubusercontent.com/25089531/49091316-d427e780-f25f-11e8-8c76-442fc05faa24.png)
  
- with value livebox TV ip ( You can find it by connecting to the management interface of your Livebox, something like `192.168.1.22` )
+ Enter the IP address of your Livebox decoder. ( You can find it by connecting to the management interface of your Livebox, something like `192.168.1.22` )
 
 ### 4. Added livebox decoder device
-Click on the **configuration** button of the gladys-livebox module in the list of your modules, then on the new **configuration** button of the window that has just opened :
-
-![image](https://user-images.githubusercontent.com/25089531/48671733-1c8f2900-eb2d-11e8-96ab-527f728cc60e.png)
-
+Now, click on the **configuration** button.
 The livebox device is then created, with these associated devicetypes.
 **Important** : Assign the `livebox decoder` device to a room, in the management of your devices. 
 
