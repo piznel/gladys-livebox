@@ -17,7 +17,7 @@
     "Decoder"
   ],
   "author": "Philippe Lenzi",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/piznel/gladys-livebox/issues"
   },

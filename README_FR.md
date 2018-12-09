@@ -10,7 +10,7 @@ Il ajoute également une nouvelle box, qui vous permet de choisir votre chaîne 
 
 ## Prérequis
 Pour fonctionner, ce module nécessite :
- - Gladys version 3.11.4 au minimum
+ - Gladys version 3.11.6 au minimum
 
 ## Limitations
 Actuellement, ne peut gérer qu'un seul décodeur.

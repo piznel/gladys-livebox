@@ -8,7 +8,7 @@ It also adds a new box, which allows you to choose the channel on an image mosai
 
 ## Prerequisites
 This module requires:
- - Gladys version 3.11.4 or higher
+ - Gladys version 3.11.6 or higher
 
 ## Limitations
 Currently, can only manage one decoder. Only tested with Livebox and decoder V4.
