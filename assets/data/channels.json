@@ -1,7 +1,7 @@
 {
 	"orange": [{
 		"channel": 0,
-		"name": "Mosaïque Orange",
+		"name": "Page d'accueil Orange",
 		"epg": 0,
 		"url": "hooks/livebox/img/0.png",
 		"type": "TNT"

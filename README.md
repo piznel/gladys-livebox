@@ -41,7 +41,7 @@ Now, click on the **configuration** button.
 The livebox device is then created, with these associated devicetypes.
 **Important** : Assign the `livebox decoder` device to a room, in the management of your devices. 
 
-### 4. Set up the box
+### 5. Set up the box
 1- In your settings, tab Box, add the box of your choice:
 	
 ![image](https://user-images.githubusercontent.com/25089531/48671809-ea31fb80-eb2d-11e8-8127-58e06a7b83aa.png)

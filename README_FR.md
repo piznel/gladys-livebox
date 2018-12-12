@@ -44,7 +44,7 @@ Cliquez sur le bouton **configuration**.
 Le périphérique 'livebox decoder' est alors créé, avec ses périphériques associés.
 **Important** : Il faut impérativement affecter votre `livebox decoder` à une pièce, dans la gestion de vos périphériques. 
 
-### 4. Paramétrer la box
+### 5. Paramétrer la box
 1- Dans 'paramétres', onglet 'box', ajouter alors la box de votre choix :
 	
 ![image](https://user-images.githubusercontent.com/25089531/48671809-ea31fb80-eb2d-11e8-8127-58e06a7b83aa.png)
