@@ -3,7 +3,18 @@
 
   angular
     .module('gladys')
-    .controller('liveboxboxCtrl', liveboxboxCtrl);
+    .controller('liveboxboxCtrl', liveboxboxCtrl)
+    .directive("showOnLoad", function() {
+      return {
+        link: function(scope, element) {
+          element.on("load", function() {
+            scope.$apply(function() {
+              scope.channel.visible = true;
+            });
+          });
+        }
+      };
+    });
 
   liveboxboxCtrl.$inject = ['televisionService', 'deviceService', 'boxService', '$http', '$scope'];
 

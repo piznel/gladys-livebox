@@ -1,5 +1,5 @@
 <!-- box-->
-<script src="/hooks/livebox/js/livebox.box.controller.minimified.js"></script>
+<script src="/hooks/livebox/js/livebox.box.controller.js"></script>
 <div class="box box-primary" data-ng-controller="liveboxboxCtrl as vm" ng-init="vm.init(<%= boxId %>);">
   <div class="box-header with-border">
     <span><i class="fa fa-television"></i></span>
@@ -19,8 +19,8 @@
   <div class="box-body">
     <div ng-show="vm.deviceId" class="container-fluid ng-cloak" style="height:250px; overflow:auto">
       <div class="row-fluid justify-content-center align-items-center">
-        <div class="col-xs-4 col-sm-3 col-md-2 text-center" ng-repeat="channel in vm.channels">
-          <img class="btn btn-default" ng-src="{{channel.url}}" title="{{channel.name}} ({{channel.type}})" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name; vm.currentUrl = channel.url" style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
+        <div class="col-xs-4 col-sm-3 col-md-2 text-center" ng-repeat="channel in vm.channels" ng-show="channel.visible">
+          <img show-on-load src="{{channel.url}}" class="btn btn-default" title="{{channel.name}} ({{channel.type}})" ng-click="vm.pressKey(channel.epg); vm.currentChannel = channel.name; vm.currentUrl = channel.url" style="cursor:pointer; max-width: 100%; height: auto; padding: 5px; margin: 5px">
         </div>
       </div>
     </div>
