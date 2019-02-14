@@ -1,5 +1,7 @@
 ### [Version française ici !](README_FR.md)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/piznel/gladys-livebox.svg)](https://greenkeeper.io/)
+
 # gladys-livebox : a [Gladys](https://github.com/GladysProject) module
 
 This module allows you to control the Orange Livebox decoder. It works with Gladys' native "television" box.
